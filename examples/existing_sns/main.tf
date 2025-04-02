@@ -37,36 +37,10 @@ locals {
   ]
 }
 
-## Read the secret for aws secrets manager 
-data "aws_secretsmanager_secret" "notification" {
-  name = var.notification_secret_name
-}
-
-## Retrieve the current version of the secret
-data "aws_secretsmanager_secret_version" "notification" {
-  secret_id = data.aws_secretsmanager_secret.notification.id
-}
-
 module "cost_anomaly_detection" {
   source = "../../"
 
-  monitors       = local.monitors
-  sns_topic_name = "this-is-an-existing-sns-topic"
-  tags           = var.tags
-
-  notifications = {
-    email = {
-      addresses = var.notification_email_addresses
-    }
-    slack = {
-      channel     = jsondecode(data.aws_secretsmanager_secret_version.notification.secret_string).channel
-      webhook_url = jsondecode(data.aws_secretsmanager_secret_version.notification.secret_string).webhook_url
-    }
-  }
-
-  accounts_id_to_name = {
-    "1234567890" = "mgmt"
-  }
-  identity_center_start_url = null
-  identity_center_role      = null
+  monitors      = local.monitors
+  sns_topic_arn = "this-is-an-existing-sns-topic"
+  tags          = var.tags
 }

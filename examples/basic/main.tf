@@ -58,7 +58,7 @@ locals {
   ]
 }
 
-## Read the secret for aws secrets manager 
+## Read the secret for aws secrets manager
 # data "aws_secretsmanager_secret" "notification" {
 #  name = var.notification_secret_name
 #}
@@ -71,20 +71,7 @@ locals {
 module "cost_anomaly_detection" {
   source = "../../"
 
-  monitors = local.monitors
-  notifications = {
-    email = {
-      addresses = var.notification_email_addresses
-    }
-    slack = {
-      channel     = "myfakechannel"
-      webhook_url = "https://hooks.slack.com/services/FAKE/URL"
-    }
-  }
-  tags = var.tags
-  accounts_id_to_name = {
-    "1234567890" = "mgmt"
-  }
-  identity_center_start_url = null
-  identity_center_role      = null
+  monitors      = local.monitors
+  sns_topic_arn = "arn:aws:sns:us-east-1:123456789012:my-topic"
+  tags          = var.tags
 }
