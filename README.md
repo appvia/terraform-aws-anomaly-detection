@@ -43,23 +43,21 @@ The `terraform-docs` utility is used to generate this README. Follow the below s
 3. Run `terraform-docs markdown table --output-file ${PWD}/README.md --output-mode inject .`
 
 <!-- BEGIN_TF_DOCS -->
-
 ## Providers
 
-| Name                                             | Version  |
-| ------------------------------------------------ | -------- |
-| <a name="provider_aws"></a> [aws](#provider_aws) | >= 5.0.0 |
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0.0 |
 
 ## Inputs
 
-| Name                                                                     | Description                                        | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Default | Required |
-| ------------------------------------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | :------: |
-| <a name="input_monitors"></a> [monitors](#input_monitors)                | A collection of cost anomaly monitors to create    | <pre>list(object({<br/> name = string<br/> # The name of the monitor<br/> monitor_type = optional(string, "DIMENSIONAL")<br/> # The type of monitor to create<br/> monitor_dimension = optional(string, "DIMENSIONAL")<br/> # The dimension to monitor<br/> monitor_specification = optional(string, null)<br/> # The specification to monitor<br/> notify = optional(object({<br/> frequency = string<br/> # The frequency of notifications<br/> threshold_expression = optional(any, null)<br/> # The threshold expression to use for notifications<br/> }), {<br/> frequency = "DAILY"<br/> })<br/> }))</pre> | n/a     |   yes    |
-| <a name="input_tags"></a> [tags](#input_tags)                            | A map of tags to add to all resources              | `map(string)`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | n/a     |   yes    |
-| <a name="input_sns_topic_arn"></a> [sns_topic_arn](#input_sns_topic_arn) | The ARN of an existing SNS topic for notifications | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `null`  |    no    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_monitors"></a> [monitors](#input\_monitors) | A collection of cost anomaly monitors to create | <pre>list(object({<br/>    name = string<br/>    # The name of the monitor<br/>    monitor_type = optional(string, "DIMENSIONAL")<br/>    # The type of monitor to create<br/>    monitor_dimension = optional(string, "DIMENSIONAL")<br/>    # The dimension to monitor<br/>    monitor_specification = optional(string, null)<br/>    # The specification to monitor<br/>    notify = optional(object({<br/>      frequency = string<br/>      # The frequency of notifications<br/>      threshold_expression = optional(any, null)<br/>      # The threshold expression to use for notifications<br/>      }), {<br/>      frequency = "DAILY"<br/>    })<br/>  }))</pre> | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources | `map(string)` | n/a | yes |
+| <a name="input_sns_topic_arn"></a> [sns\_topic\_arn](#input\_sns\_topic\_arn) | The ARN of an existing SNS topic for notifications | `string` | `null` | no |
 
 ## Outputs
 
 No outputs.
-
 <!-- END_TF_DOCS -->
